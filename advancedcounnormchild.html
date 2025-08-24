@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Counseling</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2E3B55;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Form Section */
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #2E3B55;
+            font-size: 30px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background-color: #2E3B55;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #1C2A3D;
+        }
+
+        /* Session Details Section */
+        .session-details {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .session-details h3 {
+            color: #2E3B55;
+        }
+
+        .session-item {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .session-item span {
+            font-weight: bold;
+            color: #2E3B55;
+        }
+
+        /* Dropdowns and Form Inputs */
+        select, input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .doctor-selection {
+            margin-top: 20px;
+        }
+
+        .doctor-selection select {
+            width: 48%;
+            margin-right: 4%;
+        }
+
+        .doctor-selection button {
+            width: 48%;
+            background-color: #2E3B55;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .doctor-selection button:hover {
+            background-color: #1C2A3D;
+        }
+
+        /* Notification Badge */
+        .notification {
+            background-color: #FFB400;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .notification.show {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <span>Advanced Counseling</span>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="CounseilingNormalChildernHome.html">Counseling</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Form Section -->
+    <div class="container">
+        <h2>Advanced Counseling</h2>
+
+        <!-- Session Information -->
+        <div class="form-group">
+            <label for="currentSession">Current Session:</label>
+            <input type="text" id="currentSession" value="Session 4: Emotional Regulation and Coping Skills" readonly>
+        </div>
+
+        <!-- Notification for Upcoming Session -->
+        <div class="notification" id="notification">
+            You will be notified 1 day before your next session.
+        </div>
+
+        <!-- Admin Provided Google Meet/Zoom Link (static) -->
+        <div class="form-group">
+            <label for="sessionLink">Session Link (Provided by Admin):</label>
+            <input type="url" id="sessionLink" value="https://zoom.us/j/123456789" readonly>
+        </div>
+
+        <button type="button" class="btn" onclick="joinSession()">Join Session</button>
+        
+        <!-- Session Details -->
+        <div class="session-details">
+            <h3>Session Details</h3>
+
+            <div class="session-item">
+                <span>Session 1:</span> Introduction to Counseling
+            </div>
+            <div class="session-item">
+                <span>Session 2:</span> Understanding Child Psychology
+            </div>
+            <div class="session-item">
+                <span>Session 3:</span> Techniques of Behavior Management
+            </div>
+            <div class="session-item">
+                <span>Session 4:</span> Emotional Regulation and Coping Skills
+            </div>
+            <div class="session-item">
+                <span>Session 5:</span> Cognitive Behavioral Therapy (CBT)
+            </div>
+            <div class="session-item">
+                <span>Session 6:</span> Mindfulness Techniques for Children
+            </div>
+            <div class="session-item">
+                <span>Session 7:</span> Play Therapy
+            </div>
+            <div class="session-item">
+                <span>Session 8:</span> Child Development Milestones
+            </div>
+            <div class="session-item">
+                <span>Session 9:</span> Addressing Special Needs Children
+            </div>
+            <div class="session-item">
+                <span>Session 10:</span> Communication Skills for Effective Counseling
+            </div>
+            <div class="session-item">
+                <span>Session 11:</span> Psychological First Aid
+            </div>
+            <div class="session-item">
+                <span>Session 12:</span> Building Trust with Children
+            </div>
+        </div>
+
+        <!-- Doctor Selection -->
+        <div class="doctor-selection">
+            <h3>Choose Your Doctor:</h3>
+            <select>
+                <option value="">Select a Doctor</option>
+                <option value="Dr. Jane">Dr. Jane Smith</option>
+                <option value="Dr. John">Dr. John Doe</option>
+                <option value="Dr. Emily">Dr. Emily Davis</option>
+            </select>
+            <select>
+                <option value="">Select Session Type</option>
+                <option value="One-on-One">One-on-One</option>
+                <option value="Group">Group Session</option>
+            </select>
+            <button type="button" class="btn" onclick="bookSession()">Book Session</button>
+        </div>
+    </div>
+
+    <script>
+        function joinSession() {
+            const sessionLink = document.getElementById('sessionLink').value;
+            if (sessionLink) {
+                window.open(sessionLink, '_blank');
+            } else {
+                alert('Please provide a valid meeting link.');
+            }
+        }
+
+        function bookSession() {
+            alert('Session successfully booked!');
+        }
+
+        // Notification logic (simulate notification before session)
+        setTimeout(function() {
+            document.getElementById('notification').classList.add('show');
+        }, 10000); // Simulate notification after 10 seconds (for demo purpose)
+    </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Therapy Admin Panel</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #e74c3c, #8e44ad, #3498db);
+      padding: 15px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #f8c471;
+    }
+
+    /* Content Container */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 30px;
+    }
+
+    /* Section Styles */
+    .section {
+      background-color: #fff;
+      padding: 30px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+      position: relative;
+    }
+
+    /* Hover Effects */
+    .section:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .section:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    .section:hover:before {
+      opacity: 1;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 22px;
+      color: white;
+    }
+
+    /* Form and Table Styles */
+    .form-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f8f1f1;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .form-section:hover {
+      transform: scale(1.02);
+      background-color: #f1f1f1;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: border 0.3s ease-in-out;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #9C27B0;
+    }
+
+    button {
+      background: #D32F2F;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 15px;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: #9C27B0;
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #9C27B0;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #E1BEE7;
+    }
+
+    .action-btn {
+      display: inline-block;
+      background: #FF5722;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .action-btn:hover {
+      background: #9C27B0;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>Therapy Admin Panel</span>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Add Autism Type -->
+    <div class="form-section">
+      <h3>Add Autism Type</h3>
+      <form action="#">
+        <input type="text" placeholder="Autism Type Name" required>
+        <textarea placeholder="Description of the Autism Type" required></textarea>
+        <button type="submit">Add Autism Type</button>
+      </form>
+    </div>
+
+    <!-- Video Tutorials Upload -->
+    <div class="form-section">
+      <h3>Upload Video Tutorials</h3>
+      <form action="#">
+        <select required>
+          <option value="">Select Autism Type</option>
+          <!-- Populate with autism types dynamically -->
+          <option value="type1">Autism Type 1</option>
+          <option value="type2">Autism Type 2</option>
+        </select>
+        <input type="file" accept="video/*" required>
+        <button type="submit">Upload Video</button>
+      </form>
+    </div>
+
+    <!-- Session Bookings -->
+    <div class="form-section">
+      <h3>View Session Bookings</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Session Title</th>
+            <th>Session Date</th>
+            <th>Autism Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>101</td>
+            <td>Autism Therapy Session</td>
+            <td>2025-03-29</td>
+            <td>Autism Type 1</td>
+            <td>
+              <span class="action-btn">Edit</span>
+              <span class="action-btn">Delete</span>
+            </td>
+          </tr>
+          <tr>
+            <td>102</td>
+            <td>Autism Therapy Session</td>
+            <td>2025-03-30</td>
+            <td>Autism Type 2</td>
+            <td>
+              <span class="action-btn">Edit</span>
+              <span class="action-btn">Delete</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Session Insertion -->
+    <div class="form-section">
+      <h3>Insert Session Details</h3>
+      <form action="#">
+        <input type="text" placeholder="User ID" required>
+        <input type="text" placeholder="Session Title" required>
+        <input type="url" placeholder="Video Call Link" required>
+        <button type="submit">Submit Session</button>
+      </form>
+    </div>
+  </div>
+  <!-- To-Do List Form -->
+  <div class="form-section">
+    <h3>Add To-Do Task</h3>
+    <form action="#">
+      <select required>
+        <option value="">Select Autism Type</option>
+        <option value="type1">Autism Type 1</option>
+        <option value="type2">Autism Type 2</option>
+      </select>
+      <input type="text" placeholder="Task Title" required>
+      <textarea placeholder="Task Description" required></textarea>
+      <input type="datetime-local" required>
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+
+  <!-- To-Do List View -->
+  <div class="form-section">
+    <h3>To-Do List Assigned to Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Autism Type</th>
+          <th>Task Title</th>
+          <th>Due Time</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td>Autism Type 1</td>
+          <td>Practice Social Interaction</td>
+          <td>2025-03-30 10:00 AM</td>
+          <td style="color: green; font-weight: bold;">Completed</td>
+          <td>
+            <span class="action-btn">Send Notification</span>
+            <span class="action-btn">Send Email</span>
+          </td>
+        </tr>
+        <tr>
+          <td>102</td>
+          <td>Autism Type 2</td>
+          <td>Speech Therapy Session</td>
+          <td>2025-04-02 02:00 PM</td>
+          <td style="color: red; font-weight: bold;">Pending</td>
+          <td>
+            <span class="action-btn">Send Notification</span>
+            <span class="action-btn">Send Email</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

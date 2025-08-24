@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Match Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        h1 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .color-option {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-board {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .timer {
+            font-size: 25px;
+            margin-top: 10px;
+            color: #e74c3c;
+        }
+
+        .message {
+            font-size: 20px;
+            margin-top: 20px;
+            display: none;
+            color: green;
+        }
+
+        .target-color {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .high-score {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #e67e22;
+        }
+
+        .final-score {
+            font-size: 24px;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .comment {
+            font-size: 22px;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+
+        .restart-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .change-color-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Color Match Game</h1>
+
+    <div class="score-board">
+        Score: <span id="score">0</span>
+    </div>
+
+    <div class="timer">
+        Time Left: <span id="time">30</span>s
+    </div>
+
+    <div class="target-color" id="target-color"></div>
+
+    <div class="game-container" id="game-container">
+        <!-- Color options will be dynamically inserted here -->
+    </div>
+
+    <div class="high-score" id="high-score">
+        High Score: <span id="high-score-value">0</span>
+    </div>
+
+    <div class="final-score" id="final-score">
+        <!-- Final score will be shown here -->
+    </div>
+
+    <div class="comment" id="comment">
+        <!-- Comment based on the score will be shown here -->
+    </div>
+
+    <div class="message" id="message">
+        <span>Congratulations! You've matched all the colors!</span>
+    </div>
+
+    <button class="restart-button" id="restart-button">Restart</button>
+    <button class="change-color-button" id="change-color-button">Change Color</button>
+
+    <script>
+        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#9b59b6', '#f1c40f', '#e67e22', '#1abc9c', '#34495e'];
+        const gameContainer = document.getElementById('game-container');
+        const scoreElement = document.getElementById('score');
+        const timeElement = document.getElementById('time');
+        const targetColorElement = document.getElementById('target-color');
+        const messageElement = document.getElementById('message');
+        const highScoreElement = document.getElementById('high-score-value');
+        const finalScoreElement = document.getElementById('final-score');
+        const commentElement = document.getElementById('comment');
+        const restartButton = document.getElementById('restart-button');
+        const changeColorButton = document.getElementById('change-color-button');
+        let score = 0;
+        let highScore = localStorage.getItem('highScore') || 0;
+        let timeLeft = 30;
+        let currentTargetColor;
+        let timerInterval;
+
+        // Update high score if needed
+        highScoreElement.textContent = highScore;
+
+        // Create the color options
+        function createColorOptions() {
+            const shuffledColors = shuffle([...colors]);
+            gameContainer.innerHTML = '';
+
+            shuffledColors.slice(0, 6).forEach(color => {
+                const colorOption = document.createElement('div');
+                colorOption.classList.add('color-option');
+                colorOption.style.backgroundColor = color;
+                colorOption.addEventListener('click', () => handleColorClick(color));
+                gameContainer.appendChild(colorOption);
+            });
+        }
+
+        // Shuffle function to randomize color positions
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Handle color selection
+        function handleColorClick(selectedColor) {
+            if (selectedColor === currentTargetColor) {
+                score += 10; // correct choice adds points
+            } else {
+                score -= 5; // wrong choice deducts points
+            }
+
+            // Check for high score
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('highScore', highScore);
+                highScoreElement.textContent = highScore;
+            }
+
+            scoreElement.textContent = score;
+            createColorOptions();
+            updateTargetColor();
+
+            // If score reaches 100, end the game
+            if (score >= 100) {
+                clearInterval(timerInterval);
+                showEndGame();
+            }
+        }
+
+        // Update the target color
+        function updateTargetColor() {
+            currentTargetColor = colors[Math.floor(Math.random() * colors.length)];
+            targetColorElement.style.backgroundColor = currentTargetColor;
+        }
+
+        // Start the timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    showEndGame();
+                } else {
+                    timeLeft--;
+                    timeElement.textContent = timeLeft;
+                }
+            }, 1000);
+        }
+
+        // Show the end game screen with score and comment
+        function showEndGame() {
+            finalScoreElement.textContent = `Your Final Score: ${score}`;
+            messageElement.style.display = 'block';
+            restartButton.style.display = 'inline-block';
+            changeColorButton.style.display = 'none'; // Hide Change Color button when game ends
+
+            let comment;
+            if (score >= 80) {
+                comment = "Very Good!";
+            } else if (score >= 50) {
+                comment = "Good!";
+            } else if (score >= 20) {
+                comment = "Needs Improvement";
+            } else {
+                comment = "Bad!";
+            }
+
+            commentElement.textContent = comment;
+        }
+
+        // Restart the game
+        function restartGame() {
+            score = 0;
+            timeLeft = 30;
+            scoreElement.textContent = score;
+            timeElement.textContent = timeLeft;
+            messageElement.style.display = 'none';
+            finalScoreElement.textContent = '';
+            commentElement.textContent = '';
+            restartButton.style.display = 'none';
+            changeColorButton.style.display = 'inline-block'; // Show Change Color button when game restarts
+            createColorOptions();
+            updateTargetColor();
+            startTimer();
+        }
+
+        // Change the color if not matched
+        function changeColor() {
+            if (!colors.includes(currentTargetColor)) {
+                score += 10;
+            } else {
+                score -= 5;
+            }
+
+            scoreElement.textContent = score;
+            createColorOptions();
+            updateTargetColor();
+        }
+
+        // Start the game
+        function startGame() {
+            score = 0;
+            timeLeft = 30;
+            scoreElement.textContent = score;
+            timeElement.textContent = timeLeft;
+            messageElement.style.display = 'none';
+            finalScoreElement.textContent = '';
+            commentElement.textContent = '';
+            restartButton.style.display = 'none';
+            changeColorButton.style.display = 'inline-block'; // Show Change Color button when game starts
+            createColorOptions();
+            updateTargetColor();
+            startTimer();
+        }
+
+        // Event listeners
+        restartButton.addEventListener('click', restartGame);
+        changeColorButton.addEventListener('click', changeColor);
+
+        // Start the game on page load
+        window.onload = startGame;
+    </script>
+
+</body>
+</html>

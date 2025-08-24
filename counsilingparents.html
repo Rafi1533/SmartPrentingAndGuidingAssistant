@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent & Maternity Counseling</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    /* Navbar with red, violet, blue gradient */
+    .navbar {
+      background: linear-gradient(90deg, #e74c3c, #8e44ad, #3498db);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .navbar ul li a:hover {
+      color: #f8c471;
+    }
+    /* Main container */
+    .container {
+      width: 50%;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: left;
+    }
+    h2 {
+      color: #3498db; /* Blue */
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    /* Button styling */
+    .btn {
+      background-color: #e74c3c; /* Red */
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background-color: #c0392b;
+    }
+    /* Session Details Section */
+    .session-details {
+      margin-top: 40px;
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .session-details h3 {
+      color: #8e44ad; /* Violet */
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .session-item {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .session-item span {
+      font-weight: bold;
+      color: #3498db; /* Blue */
+    }
+    /* Doctor Selection Section */
+    .doctor-selection {
+      margin-top: 20px;
+    }
+    .doctor-selection select {
+      width: 48%;
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 4%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .doctor-selection button {
+      width: 48%;
+      background-color: #3498db; /* Blue */
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .doctor-selection button:hover {
+      background-color: #2980b9;
+    }
+    /* Notification */
+    .notification {
+      background-color: #f39c12; /* Orange */
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: none;
+    }
+    .notification.show {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>Parent & Maternity Counseling</span>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="parentcare.html">Parent Care</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h2>Advanced Counseling for Parents & Maternity</h2>
+
+    <!-- Session Information -->
+    <div class="form-group">
+      <label for="currentSession">Current Session:</label>
+      <input type="text" id="currentSession" value="Session 3: Effective Communication & Stress Management" readonly>
+    </div>
+    <!-- Session Link -->
+    <div class="form-group">
+      <label for="sessionLink">Session Link (Provided by Admin):</label>
+      <input type="url" id="sessionLink" value="https://zoom.us/j/987654321" readonly>
+    </div>
+
+    <button class="btn" onclick="joinSession()">Join Session</button>
+
+    <!-- Session Details -->
+    <div class="session-details">
+      <h3>Session Details</h3>
+      <div class="session-item">
+        <span>Session 1:</span> Introduction to Counseling
+      </div>
+      <div class="session-item">
+        <span>Session 2:</span> Effective Communication Strategies
+      </div>
+      <div class="session-item">
+        <span>Session 3:</span> Stress Management & Communication
+      </div>
+      <div class="session-item">
+        <span>Session 4:</span> Building Emotional Resilience
+      </div>
+    </div>
+
+    <!-- Doctor Booking Section -->
+    <div class="doctor-selection">
+      <h3>Choose Your Doctor:</h3>
+      <select>
+        <option value="">Select a Doctor</option>
+        <option value="Dr. Jane">Dr. Jane Smith</option>
+        <option value="Dr. John">Dr. John Doe</option>
+        <option value="Dr. Emily">Dr. Emily Davis</option>
+      </select>
+      <select>
+        <option value="">Select Session Type</option>
+        <option value="One-on-One">One-on-One</option>
+        <option value="Group">Group Session</option>
+      </select>
+      <button class="btn" onclick="bookSession()">Book Session</button>
+    </div>
+  </div>
+
+  <script>
+    function joinSession() {
+      const sessionLink = document.getElementById('sessionLink').value;
+      if (sessionLink) {
+        window.open(sessionLink, '_blank');
+      } else {
+        alert('Please provide a valid meeting link.');
+      }
+    }
+
+    function bookSession() {
+      alert('Session successfully booked!');
+    }
+  </script>
+</body>
+</html>

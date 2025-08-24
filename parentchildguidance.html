@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Care Guidance</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+    /* Navbar with red, violet, blue gradient */
+    .navbar {
+      background: linear-gradient(90deg, #e74c3c, #8e44ad, #3498db);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .navbar ul li a:hover {
+      color: #f8c471;
+    }
+    /* Main Container */
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    h2 {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .greeting {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .tips {
+      background: #dff0d8;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      color: #3c763d;
+      font-size: 18px;
+    }
+    /* To-Do List Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    /* Action Column: Radio button and submit button */
+    .action-btn {
+      background-color: #3498db;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    .action-btn:hover {
+      background-color: #2980b9;
+    }
+    .action-input {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    /* Notification styling */
+    .notification {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      display: none;
+      font-size: 16px;
+      text-align: center;
+    }
+    /* Video Tutorial Section */
+    .video-tutorials {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+    }
+    .video-tutorials h3 {
+      color: #e74c3c;
+      margin-bottom: 20px;
+    }
+    .video-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .video-item {
+      width: 45%;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .video-item:hover {
+      transform: scale(1.05);
+    }
+    .video-item iframe {
+      width: 100%;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>Child Care Guidance</span>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="parentcare.html">Parent Care</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h2>Child Care Guidance</h2>
+    <!-- Personalized Greeting -->
+    <div class="greeting">Hello, Rafia!</div>
+    <!-- Personalized Tips (to be loaded per user) -->
+    <div class="tips">
+      Personalized Tips: Ensure your child gets regular sleep, stays hydrated, and enjoys their daily playtime.
+    </div>
+    <!-- To-Do List Table -->
+    <table id="todo-table">
+      <tr>
+        <th>Task</th>
+        <th>Time Left</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Feed Your Baby</td>
+        <td data-time="1200">20:00</td>
+        <td>
+          <input type="radio" name="task1" class="action-input">
+          <button class="action-btn" onclick="submitTask(this)">Submit</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Change Diaper</td>
+        <td data-time="1800">30:00</td>
+        <td>
+          <input type="radio" name="task2" class="action-input">
+          <button class="action-btn" onclick="submitTask(this)">Submit</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Check Baby's Temperature</td>
+        <td data-time="3600">60:00</td>
+        <td>
+          <input type="radio" name="task3" class="action-input">
+          <button class="action-btn" onclick="submitTask(this)">Submit</button>
+        </td>
+      </tr>
+    </table>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      Reminder: Your next task is due in 10 minutes!
+    </div>
+  </div>
+
+  <!-- Video Tutorials Section -->
+  <div class="video-tutorials">
+    <h3>Child Care Video Tutorials</h3>
+    <div class="video-list">
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/1ygtPocdN-E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/X75ED-HPrfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/fakQW9H_pV8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/UOxt5oO4LqA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Update the tasks collection every second to only process rows that still have a data-time attribute
+    setInterval(() => {
+      const tasks = document.querySelectorAll('#todo-table td[data-time]');
+      tasks.forEach(task => {
+        let timeLeft = parseInt(task.getAttribute('data-time'));
+        if (timeLeft > 0) {
+          timeLeft--;
+          task.setAttribute('data-time', timeLeft);
+          // Format time as mm:ss
+          let minutes = Math.floor(timeLeft / 60);
+          let seconds = timeLeft % 60;
+          task.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+          // Show notification when 10 minutes (600 sec) remain
+          if (timeLeft === 600) {
+            document.getElementById('notification').style.display = 'block';
+          }
+        } else {
+          task.textContent = "Due";
+        }
+      });
+    }, 1000);
+
+    // Function to simulate task submission and stop countdown for that row
+    function submitTask(button) {
+      // Simulate task submission (in real application, send update to server)
+      alert('Task submitted successfully!');
+      // Disable the button after submission
+      button.disabled = true;
+      // Stop the countdown for this task by removing the data-time attribute
+      let row = button.closest('tr');
+      let timeCell = row.querySelector('td[data-time]');
+      if (timeCell) {
+        timeCell.removeAttribute('data-time');
+        timeCell.textContent = "Submitted";
+      }
+    }
+  </script>
+</body>
+</html>

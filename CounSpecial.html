@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Services for Special Children</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F3E5F5;
+            text-align: center;
+        }
+
+        .navbar {
+            background: #673AB7;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar ul li a:hover {
+            color: #FF4081;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .section {
+            background: linear-gradient(135deg, #FF4081, #673AB7);
+            width: 45%;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            color: white;
+            text-align: left;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: #FFF3E0;
+        }
+
+        .details {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #FFEBEE;
+        }
+
+        .show-btn {
+            background: #FF4081;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .show-btn:hover {
+            background: #E91E63;
+        }
+
+        /* Slider Section */
+        .slider-container {
+            width: 80%;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slider-container img, .slider-container video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .active {
+            background-color: #FF4081;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Smart Parenting Assistant</span>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="childcare.html">Child's Care</a></li>
+            <li><a href="specialchild.html">Special Child Home</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="section" onclick="window.location.href='freetrailcounspecial.html'">
+            <h2>Free Trial (Up to 3 Sessions)</h2>
+            <p>Try our counseling services for free and support your child's development.</p>
+            <button class="show-btn" onclick="toggleDetails(event, 'details1')">Show Details</button>
+            <p id="details1" class="details">Get up to 3 free counseling sessions with our expert counselors. Experience professional care for your special child.</p>
+        </div>
+
+        <div class="section" onclick="window.location.href='advancedcounspecial.html'">
+            <h2>Advanced Counseling</h2>
+            <p>For long-term care and continuous support.</p>
+            <button class="show-btn" onclick="toggleDetails(event, 'details2')">Show Details</button>
+            <p id="details2" class="details">Advanced counseling includes personalized therapy sessions and mental health support tailored specifically for special children.</p>
+        </div>
+    </div>
+
+    <!-- Slider Section -->
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide"><img src="specialchild1.jpg" alt="Special Child Therapy"></div>
+            <div class="slide"><video src="specialchild_video.mp4" controls></video></div>
+            <div class="slide"><img src="specialchild2.jpg" alt="Special Child Support"></div>
+        </div>
+    </div>
+    <div class="dots">
+        <span class="dot active" onclick="moveSlide(0)"></span>
+        <span class="dot" onclick="moveSlide(1)"></span>
+        <span class="dot" onclick="moveSlide(2)"></span>
+    </div>
+
+    <script>
+        function toggleDetails(event, id) {
+            event.stopPropagation();
+            var details = document.getElementById(id);
+            details.style.display = details.style.display === "block" ? "none" : "block";
+        }
+
+        // Slider JavaScript
+        let slideIndex = 0;
+        const slides = document.querySelector(".slides");
+        const dots = document.querySelectorAll(".dot");
+
+        function moveSlide(index) {
+            slideIndex = index;
+            const slideWidth = document.querySelector(".slide").clientWidth;
+            slides.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[slideIndex].classList.add("active");
+        }
+    </script>
+
+</body>
+</html>

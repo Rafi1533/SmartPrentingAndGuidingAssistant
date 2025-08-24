@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #e74c3c, #8e44ad, #3498db);
+      padding: 15px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #f8c471;
+    }
+
+    /* Content Container */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 30px;
+    }
+
+    /* Section Styles */
+    .section {
+      background-color: #fff;
+      padding: 30px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+      position: relative;
+    }
+
+    /* Hover Effects */
+    .section:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .section:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    .section:hover:before {
+      opacity: 1;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 22px;
+      color: white;
+    }
+
+    /* Colorful Sections */
+    .section-view-emergencies {
+      background: linear-gradient(90deg, #e74c3c, #ff6f61);
+      color: white;
+    }
+
+    .section-add-counseling {
+      background: linear-gradient(90deg, #8e44ad, #9b59b6);
+      color: white;
+    }
+
+    .section-add-therapy {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+      color: white;
+    }
+
+    .section-shop-management {
+      background: linear-gradient(90deg, #f39c12, #f1c40f);
+      color: white;
+    }
+
+    .section-teaching-aid {
+      background: linear-gradient(90deg, #3498db, #2980b9);
+      color: white;
+    }
+
+    .section-achievements {
+      background: linear-gradient(90deg, #1abc9c, #16a085);
+      color: white;
+    }
+
+    .section-child-care {
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
+      color: white;
+    }
+
+    .section-maternity-care {
+      background: linear-gradient(90deg, #34495e, #2c3e50);
+      color: white;
+    }
+
+    /* Hover Effects for Sections */
+    .section-view-emergencies:hover {
+      background: linear-gradient(90deg, #e74c3c, #c0392b);
+    }
+
+    .section-add-counseling:hover {
+      background: linear-gradient(90deg, #8e44ad, #7d3c98);
+    }
+
+    .section-add-therapy:hover {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+    }
+
+    .section-shop-management:hover {
+      background: linear-gradient(90deg, #f39c12, #e67e22);
+    }
+
+    .section-teaching-aid:hover {
+      background: linear-gradient(90deg, #3498db, #2980b9);
+    }
+
+    .section-achievements:hover {
+      background: linear-gradient(90deg, #1abc9c, #16a085);
+    }
+
+    .section-child-care:hover {
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
+    }
+
+    .section-maternity-care:hover {
+      background: linear-gradient(90deg, #34495e, #2c3e50);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>Admin Panel</span>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Sections -->
+    <div class="section section-view-emergencies" onclick="window.location.href='adminEmergency.html'">
+      <h2>View Emergencies</h2>
+    </div>
+
+    <div class="section section-add-counseling" onclick="window.location.href='admincounseilinghome.html'">
+      <h2>Add Counseling Sessions</h2>
+    </div>
+
+    <div class="section section-add-therapy" onclick="window.location.href='admintherapy.html'">
+      <h2>Add Therapy for Autism</h2>
+    </div>
+
+    <div class="section section-shop-management" onclick="window.location.href='adminshop.html'">
+      <h2>Shop Management</h2>
+    </div>
+
+    <div class="section section-teaching-aid" onclick="window.location.href='adminteachingaid.html'">
+      <h2>Teaching Aid Management</h2>
+    </div>
+
+    <div class="section section-achievements" onclick="window.location.href='adminachievementstory.html'">
+      <h2>Add Achievement Stories</h2>
+    </div>
+
+    <div class="section section-child-care" onclick="window.location.href='adminparentchildcare.html'">
+      <h2>Add Child Care Guidelines</h2>
+    </div>
+
+    <div class="section section-maternity-care" onclick="window.location.href='adminmaternitycare.html'">
+      <h2>Add Maternity Care Guidelines</h2>
+    </div>
+  </div>
+
+</body>
+</html>

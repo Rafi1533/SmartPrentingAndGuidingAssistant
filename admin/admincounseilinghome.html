@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+        }
+        .counseling-sections {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .counseling-box {
+            background: #4CAF50;
+            color: white;
+            width: 30%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .counseling-box:hover {
+            transform: scale(1.05);
+            background: #388E3C;
+        }
+        .counseling-box a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .counseling-box:hover a {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Counseling Services</span>
+        <ul>
+            <li><a href="adminhome.html">Admin Home</a></li>
+            <li><a href="admincounseilinghome.html">Admin Counseiling Panel</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Counseling Services</h2>
+        <p>We offer different counseling services for parents, normal children, and special children. Please select a category for more information or to book a session.</p>
+
+        <div class="counseling-sections">
+            <!-- Parents Counseling Section -->
+            <div class="counseling-box">
+                <a href="admincounparent.html">Parents Counseling</a>
+            </div>
+
+            <!-- Normal Child Counseling Section -->
+            <div class="counseling-box">
+                <a href="admincounnormal.html">Normal Child Counseling</a>
+            </div>
+
+            <!-- Special Child Counseling Section -->
+            <div class="counseling-box">
+                <a href="admincounspecial.html">Special Child Counseling</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

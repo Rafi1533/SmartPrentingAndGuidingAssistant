@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Doctor</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fce4ec;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #333;
+    }
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background: linear-gradient(90deg, #e74c3c, #8e44ad, #3498db);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .navbar ul li a:hover {
+      color: #f8c471;
+    }
+    /* Chat Container */
+    .chat-container {
+      width: 90%;
+      max-width: 800px;
+      background: white;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Chat Header */
+    .chat-header {
+      background: #3498db;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    /* Chat Messages */
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      background: #fce4ec;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+    .message {
+      max-width: 70%;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 20px;
+      line-height: 1.4;
+      position: relative;
+    }
+    .doctor-message {
+      background: #e0f7fa;
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    .user-message {
+      background: #c8e6c9;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    /* Chat Input */
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
+    .chat-input button {
+      padding: 15px 20px;
+      background: #3498db;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .chat-input button:hover {
+      background: #2980b9;
+    }
+    /* Doctor selection area */
+    .doctor-select {
+      background: #f3e5f5;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    .doctor-select select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>Personalized Chat with Doctor</span>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Doctor Selection -->
+  <div class="doctor-select">
+    <label for="doctorSelect">Select Doctor:</label>
+    <select id="doctorSelect">
+      <option value="Dr. Jane">Dr. Jane Smith</option>
+      <option value="Dr. John">Dr. John Doe</option>
+      <option value="Dr. Emily">Dr. Emily Davis</option>
+    </select>
+  </div>
+
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <div class="chat-header">Chat with Doctor</div>
+    <div class="chat-messages" id="chat-messages">
+      <!-- Sample messages -->
+      <div class="message doctor-message">
+        Hello, how can I help you today?
+      </div>
+      <div class="message user-message">
+        I'm feeling anxious about my upcoming delivery.
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const messageText = input.value.trim();
+      if (messageText === '') return;
+
+      // Create user message
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('message', 'user-message');
+      userMessage.textContent = messageText;
+
+      // Append to chat messages
+      const chatMessages = document.getElementById('chat-messages');
+      chatMessages.appendChild(userMessage);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      input.value = '';
+
+      // Simulate doctor response after a delay
+      setTimeout(() => {
+        const doctorMessage = document.createElement('div');
+        doctorMessage.classList.add('message', 'doctor-message');
+        doctorMessage.textContent = "Thank you for sharing. Let's discuss some ways to manage your anxiety.";
+        chatMessages.appendChild(doctorMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Trial - Special Child</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f3e5f5;
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #673AB7;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar ul li a:hover {
+            color: #FF4081;
+        }
+
+        /* Main Form Container */
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #673AB7;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .join-btn {
+            display: block;
+            width: 100%;
+            background: #FF4081;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .join-btn:hover {
+            background: #E91E63;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <span>Smart Parenting Assistant</span>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="childcare.html">Child's Care</a></li>
+            <li><a href="parentcare.html">Parent's Care</a></li>
+            <li><a href="CounseilingSpecialChildHome.html">Counseling</a></li>
+        </ul>
+    </nav>
+
+    <!-- Free Trial Form for Special Child -->
+    <div class="container">
+        <h2>Free Trial Counseling Session for Special Child</h2>
+        <p>Join your free trial counseling session designed for special children using the link below.</p>
+
+        <div class="form-group">
+            <label>Session Link:</label>
+            <input type="text" id="sessionLink" value="https://meet.google.com/example" readonly>
+        </div>
+
+        <button class="join-btn" onclick="joinSession()">Join Session</button>
+    </div>
+
+    <script>
+        function joinSession() {
+            var sessionLink = document.getElementById("sessionLink").value;
+            window.open(sessionLink, "_blank");
+        }
+    </script>
+
+</body>
+</html>

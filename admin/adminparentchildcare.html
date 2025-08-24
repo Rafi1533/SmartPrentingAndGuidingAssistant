@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Child Care Guidance</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+    .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+    .admin-form input, .admin-form button, .admin-form select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .admin-form button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .admin-form button:hover {
+      background-color: #2980b9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    .edit-btn, .delete-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .edit-btn {
+      background-color: #f39c12;
+      color: white;
+    }
+    .edit-btn:hover {
+      background-color: #e67e22;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <span>Shop Management</span>
+        <ul>
+            <li><a href="adminhome.html">Home</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+
+  <div class="container">
+    <h2>Admin Panel - Task & Video Management</h2>
+
+    <!-- User ID Selection -->
+    <div class="admin-form">
+      <label for="user-id">User ID:</label>
+      <input type="text" id="user-id" placeholder="Enter User ID" required>
+    </div>
+
+    <!-- Task Form -->
+    <div class="admin-form">
+      <input type="text" id="task-name" placeholder="Enter Task Name" required>
+      <input type="number" id="task-time" placeholder="Time in Seconds (e.g., 1200 for 20 minutes)" required>
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Task Table -->
+    <table id="task-table">
+      <tr>
+        <th>User ID</th>
+        <th>Task</th>
+        <th>Time (Seconds)</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+
+    <h2>Upload Tutorial Video</h2>
+    <!-- Video Upload Form -->
+    <div class="admin-form">
+      <input type="text" id="video-title" placeholder="Enter Video Title" required>
+      <input type="url" id="video-url" placeholder="Enter YouTube URL" required>
+      <button onclick="uploadVideo()">Upload Video</button>
+    </div>
+
+    <!-- Video Table -->
+    <table id="video-table">
+      <tr>
+        <th>User ID</th>
+        <th>Title</th>
+        <th>Video</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Function to add a new task
+    function addTask() {
+      let userId = document.getElementById('user-id').value;
+      let taskName = document.getElementById('task-name').value;
+      let taskTime = document.getElementById('task-time').value;
+
+      if (userId === '' || taskName === '' || taskTime === '') {
+        alert("Please enter all details.");
+        return;
+      }
+
+      let table = document.getElementById('task-table');
+      let row = table.insertRow(-1);
+      row.innerHTML = `
+        <td>${userId}</td>
+        <td>${taskName}</td>
+        <td>${taskTime}</td>
+        <td>
+          <button class="edit-btn" onclick="editTask(this)">Edit</button>
+          <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+        </td>
+      `;
+
+      document.getElementById('task-name').value = '';
+      document.getElementById('task-time').value = '';
+    }
+
+    // Function to edit a task
+    function editTask(button) {
+      let row = button.parentElement.parentElement;
+      let taskName = row.cells[1].innerText;
+      let taskTime = row.cells[2].innerText;
+
+      let newTaskName = prompt("Edit Task Name:", taskName);
+      let newTaskTime = prompt("Edit Task Time (seconds):", taskTime);
+
+      if (newTaskName !== null && newTaskTime !== null) {
+        row.cells[1].innerText = newTaskName;
+        row.cells[2].innerText = newTaskTime;
+      }
+    }
+
+    // Function to delete a task
+    function deleteTask(button) {
+      if (confirm("Are you sure you want to delete this task?")) {
+        let row = button.parentElement.parentElement;
+        row.remove();
+      }
+    }
+
+    // Function to upload video
+    function uploadVideo() {
+      let userId = document.getElementById('user-id').value;
+      let videoTitle = document.getElementById('video-title').value;
+      let videoUrl = document.getElementById('video-url').value;
+
+      if (userId === '' || videoTitle === '' || videoUrl === '') {
+        alert("Please enter all details.");
+        return;
+      }
+
+      let table = document.getElementById('video-table');
+      let row = table.insertRow(-1);
+      row.innerHTML = `
+        <td>${userId}</td>
+        <td>${videoTitle}</td>
+        <td><a href="${videoUrl}" target="_blank">Watch Video</a></td>
+        <td>
+          <button class="delete-btn" onclick="deleteVideo(this)">Delete</button>
+        </td>
+      `;
+
+      document.getElementById('video-title').value = '';
+      document.getElementById('video-url').value = '';
+    }
+
+    // Function to delete a video
+    function deleteVideo(button) {
+      if (confirm("Are you sure you want to delete this video?")) {
+        let row = button.parentElement.parentElement;
+        row.remove();
+      }
+    }
+  </script>
+
+</body>
+</html>

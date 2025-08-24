@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parents Counseling</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #1976D2;
+            color: white;
+        }
+        .form-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button {
+            background: #1976D2;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0D47A1;
+        }
+        .attendance-table {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Parents Counseling</span>
+        <ul>
+            <li><a href="adminhome.html">Admin Home</a></li>
+            <li><a href="admincounseilinghome.html">Admin Counseiling Panel</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Parents Counseling</h2>
+
+        <!-- Section 1: View User Bookings -->
+        <h3>View User Bookings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Selected Doctor</th>
+                    <th>Session Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample data, replace with dynamic data -->
+                <tr>
+                    <td>001</td>
+                    <td>John Doe</td>
+                    <td>Dr. Smith</td>
+                    <td>Behavioral Therapy</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Jane Roe</td>
+                    <td>Dr. Lee</td>
+                    <td>Speech Therapy</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 2: Provide Video Session Link Form -->
+        <div class="form-section">
+            <h3>Provide Video Session Link</h3>
+            <form action="#">
+                <input type="text" placeholder="User ID" required>
+                <input type="text" placeholder="User Name" required>
+                <input type="text" placeholder="Session Title" required>
+                <input type="url" placeholder="Video Call Link" required>
+                <button type="submit">Submit Video Link</button>
+            </form>
+        </div>
+
+        <!-- Section 3: User Session Attendance -->
+        <div class="attendance-table">
+            <h3>User Session Attendance</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Sessions Attended</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data, replace with dynamic data -->
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Roe</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement Story Upload</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F8BBD0;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+            background-color: #F48FB1;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            border-color: #9C27B0;
+        }
+        button {
+            background: #D32F2F;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #9C27B0;
+            color: white;
+        }
+        tr:hover {
+            background-color: #E1BEE7;
+        }
+        .action-btn {
+            display: inline-block;
+            background: #FF5722;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .action-btn:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Achievement Story Upload</span>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="childcare.html">Child's Care</a></li>
+            <li><a href="parentcare.html">Parent's Care</a></li>
+            <li><a href="shop.html">Shop Management</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Upload Achievement Story</h2>
+
+        <!-- Add Achievement Story Form -->
+        <div class="form-section">
+            <h3>Share Your Story</h3>
+            <form action="#">
+                <input type="text" placeholder="Story ID" required>
+                <input type="text" placeholder="Story Title" required>
+                <textarea placeholder="Story Description" required></textarea>
+                <input type="file" accept="image/*" required>
+                <button type="submit">Upload Story</button>
+            </form>
+        </div>
+
+        <!-- Shared Stories Table -->
+        <h3>Shared Stories</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Story ID</th>
+                    <th>Story Title</th>
+                    <th>Story Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>A Journey to Success</td>
+                    <td>This story shares the amazing journey of overcoming obstacles.</td>
+                    <td><img src="story_image.jpg" alt="Story Image" width="50"></td>
+                    <td>
+                        <span class="action-btn" onclick="editStory(1)">Edit</span>
+                        <span class="action-btn" onclick="updateStory(1)">Update</span>
+                        <span class="action-btn" onclick="deleteStory(1)">Delete</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>From Failure to Triumph</td>
+                    <td>A powerful story about resilience and never giving up.</td>
+                    <td><img src="story_image2.jpg" alt="Story Image" width="50"></td>
+                    <td>
+                        <span class="action-btn" onclick="editStory(2)">Edit</span>
+                        <span class="action-btn" onclick="updateStory(2)">Update</span>
+                        <span class="action-btn" onclick="deleteStory(2)">Delete</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        function editStory(storyId) {
+            alert('Edit Story ID: ' + storyId);
+            // Add logic for editing story
+        }
+        
+        function updateStory(storyId) {
+            alert('Update Story ID: ' + storyId);
+            // Add logic for updating story
+        }
+        
+        function deleteStory(storyId) {
+            alert('Delete Story ID: ' + storyId);
+            // Add logic for deleting story
+        }
+    </script>
+
+</body>
+</html>

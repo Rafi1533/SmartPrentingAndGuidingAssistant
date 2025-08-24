@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - View Emergencies</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #1565C0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #1565C0;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .media-preview {
+            max-width: 200px;
+            max-height: 200px;
+            position: relative;
+        }
+        .media-preview img, .media-preview video {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .media-preview img:hover, .media-preview video:hover {
+            opacity: 0.8;
+        }
+        .location-btn, .action-btn {
+            background: #d32f2f;
+            padding: 8px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .location-btn:hover, .action-btn:hover {
+            background: #b71c1c;
+        }
+        .action-btn {
+            background-color: #4CAF50;
+        }
+        .action-btn:hover {
+            background-color: #388E3C;
+        }
+        .full-screen-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #1565C0;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .full-screen-btn:hover {
+            background-color: #0D47A1;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Admin - View Emergencies</span>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="adminhome.html">Admin Panel</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Emergency Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Emergency ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Emergency Description</th>
+                    <th>Uploaded Media</th>
+                    <th>Live Location</th>
+                    <th>Action</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>John Doe</td>
+                    <td>123 Elm Street</td>
+                    <td>Severe injury, needs immediate assistance</td>
+                    <td>
+                        <div class="media-preview">
+                            <img src="uploaded_images/emergency1.jpg" alt="Emergency Image" onclick="openFullScreen('uploaded_images/emergency1.jpg')">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="location-btn" onclick="showLocation('40.7128', '-74.0060')">View Location</button>
+                    </td>
+                    <td>
+                        <button class="action-btn" onclick="callAmbulance()">Call Ambulance</button>
+                        <button class="action-btn" onclick="callHospital()">Call Best Hospital</button>
+                    </td>
+                    <td>2025-03-28 10:30 AM</td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>Jane Smith</td>
+                    <td>456 Oak Avenue</td>
+                    <td>Heart attack, urgent help needed</td>
+                    <td>
+                        <div class="media-preview">
+                            <video controls onclick="openFullScreen('uploaded_videos/emergency_video.mp4')">
+                                <source src="uploaded_videos/emergency_video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="location-btn" onclick="showLocation('34.0522', '-118.2437')">View Location</button>
+                    </td>
+                    <td>
+                        <button class="action-btn" onclick="callAmbulance()">Call Ambulance</button>
+                        <button class="action-btn" onclick="callHospital()">Call Best Hospital</button>
+                    </td>
+                    <td>2025-03-28 11:15 AM</td>
+                </tr>
+                <!-- More emergency records can be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function showLocation(lat, lon) {
+            // Example: You can open a map with the provided coordinates
+            const url = `https://www.google.com/maps?q=${lat},${lon}`;
+            window.open(url, '_blank');
+        }
+
+        function callAmbulance() {
+            window.location.href = "tel:112"; // Replace with actual ambulance emergency number
+        }
+
+        function callHospital() {
+            window.location.href = "tel:1234567890"; // Replace with actual hospital number
+        }
+
+        function openFullScreen(mediaSrc) {
+            const fullScreenDiv = document.createElement('div');
+            fullScreenDiv.style.position = 'fixed';
+            fullScreenDiv.style.top = 0;
+            fullScreenDiv.style.left = 0;
+            fullScreenDiv.style.width = '100%';
+            fullScreenDiv.style.height = '100%';
+            fullScreenDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            fullScreenDiv.style.zIndex = 9999;
+            fullScreenDiv.style.display = 'flex';
+            fullScreenDiv.style.alignItems = 'center';
+            fullScreenDiv.style.justifyContent = 'center';
+
+            const mediaElement = document.createElement(mediaSrc.endsWith('.mp4') ? 'video' : 'img');
+            mediaElement.src = mediaSrc;
+            mediaElement.style.maxWidth = '90%';
+            mediaElement.style.maxHeight = '90%';
+            mediaElement.setAttribute('controls', true);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.innerText = 'Close';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '10px';
+            closeBtn.style.right = '10px';
+            closeBtn.style.backgroundColor = '#FF0000';
+            closeBtn.style.color = '#FFF';
+            closeBtn.style.padding = '10px 20px';
+            closeBtn.style.border = 'none';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.style.borderRadius = '5px';
+            closeBtn.onclick = function() {
+                fullScreenDiv.remove();
+            };
+
+            fullScreenDiv.appendChild(mediaElement);
+            fullScreenDiv.appendChild(closeBtn);
+            document.body.appendChild(fullScreenDiv);
+        }
+    </script>
+
+</body>
+</html>

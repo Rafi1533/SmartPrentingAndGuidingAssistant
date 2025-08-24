@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Management</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            transition: all 0.3s ease-in-out;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        th {
+            background-color: #9C27B0;
+            color: white;
+        }
+        tr:hover {
+            transform: scale(1.05);
+            background-color: #E1BEE7;
+        }
+        .form-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F8BBD0;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+            background-color: #F48FB1;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            border-color: #9C27B0;
+        }
+        button {
+            background: #D32F2F;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+        .action-btn {
+            display: inline-block;
+            background: #FF5722;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .action-btn:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+
+        /* New Section Styles */
+        .section-title {
+            margin-top: 30px;
+            color: #9C27B0;
+            font-size: 1.5em;
+        }
+        .status-table {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+        .status-table th {
+            background-color: #FF5722;
+            color: white;
+        }
+        .status-table td {
+            text-align: left;
+        }
+        .status-table tr:hover {
+            background-color: #E1BEE7;
+        }
+        .sold-table {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+        }
+        .sold-table th {
+            background-color: #1565C0;
+            color: white;
+        }
+        .sold-table td {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Shop Management</span>
+        <ul>
+            <li><a href="adminhome.html">Home</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Manage Products</h2>
+
+        <!-- Add Product Form -->
+        <div class="form-section">
+            <h3>Add New Product</h3>
+            <form action="#">
+                <input type="text" placeholder="Product ID" required>
+                <textarea placeholder="Product Details" required></textarea>
+                <input type="file" accept="image/*,video/*" required>
+                <input type="number" placeholder="Product Price" required>
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+
+        <!-- Product Table -->
+        <h3>Added Products</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Details</th>
+                    <th>Product Image</th>
+                    <th>Product Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Special Child Toy</td>
+                    <td><img src="toy.jpg" alt="Toy" width="50"></td>
+                    <td>$25.99</td>
+                    <td>
+                        <span class="action-btn" onclick="editProduct(1)">Edit</span>
+                        <span class="action-btn" onclick="deleteProduct(1)">Delete</span>
+                        <span class="action-btn" onclick="updateProduct(1)">Update</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Autism Therapy Book</td>
+                    <td><img src="book.jpg" alt="Book" width="50"></td>
+                    <td>$19.99</td>
+                    <td>
+                        <span class="action-btn" onclick="editProduct(2)">Edit</span>
+                        <span class="action-btn" onclick="deleteProduct(2)">Delete</span>
+                        <span class="action-btn" onclick="updateProduct(2)">Update</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Sold Items Section -->
+        <div class="section-title">Sold Items</div>
+        <table class="sold-table">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Buyer Name</th>
+                    <th>Product Sold</th>
+                    <th>Transaction Amount</th>
+                    <th>Transaction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>T001</td>
+                    <td>John Doe</td>
+                    <td>Special Child Toy</td>
+                    <td>$25.99</td>
+                    <td>2025-03-28</td>
+                </tr>
+                <tr>
+                    <td>T002</td>
+                    <td>Jane Smith</td>
+                    <td>Autism Therapy Book</td>
+                    <td>$19.99</td>
+                    <td>2025-03-27</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Delivery Status Section -->
+        <div class="section-title">Product Delivery Status</div>
+        <table class="status-table">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Delivery Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Special Child Toy</td>
+                    <td>In Transit</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Autism Therapy Book</td>
+                    <td>Delivered</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function editProduct(productId) {
+            alert('Edit Product ID: ' + productId);
+            // Add logic for editing product
+        }
+        
+        function deleteProduct(productId) {
+            alert('Delete Product ID: ' + productId);
+            // Add logic for deleting product
+        }
+        
+        function updateProduct(productId) {
+            alert('Update Product ID: ' + productId);
+            // Add logic for updating product
+        }
+    </script>
+
+</body>
+</html>

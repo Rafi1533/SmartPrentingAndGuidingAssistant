@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Child Counseling</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            transition: all 0.3s ease-in-out;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        th {
+            background-color: #9C27B0;
+            color: white;
+        }
+        tr:hover {
+            transform: scale(1.05);
+            background-color: #E1BEE7;
+        }
+        .form-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F8BBD0;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+            background-color: #F48FB1;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            border-color: #9C27B0;
+        }
+        button {
+            background: #D32F2F;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+        .attendance-table {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #E3F2FD;
+            border-radius: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .attendance-table table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .attendance-table th, .attendance-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .attendance-table tr:hover {
+            transform: scale(1.05);
+            background-color: #BBDEFB;
+        }
+        .attendance-table th {
+            background-color: #1565C0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Special Child Counseling</span>
+        <ul>
+            <li><a href="adminhome.html">Admin Home</a></li>
+            <li><a href="admincounseilinghome.html">Admin Counseiling Panel</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Special Child Counseling</h2>
+
+        <!-- Section 1: View User Bookings -->
+        <h3>View User Bookings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Selected Doctor</th>
+                    <th>Session Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample data, replace with dynamic data -->
+                <tr>
+                    <td>001</td>
+                    <td>Sarah Williams</td>
+                    <td>Dr. Smith</td>
+                    <td>Behavioral Therapy</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Jack Brown</td>
+                    <td>Dr. Lee</td>
+                    <td>Speech Therapy</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 2: Provide Video Session Link Form -->
+        <div class="form-section">
+            <h3>Provide Video Session Link</h3>
+            <form action="#">
+                <input type="text" placeholder="User ID" required>
+                <input type="text" placeholder="User Name" required>
+                <input type="text" placeholder="Session Title" required>
+                <input type="url" placeholder="Video Call Link" required>
+                <button type="submit">Submit Video Link</button>
+            </form>
+        </div>
+
+        <!-- Section 3: User Session Attendance -->
+        <div class="attendance-table">
+            <h3>User Session Attendance</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Sessions Attended</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data, replace with dynamic data -->
+                    <tr>
+                        <td>001</td>
+                        <td>Sarah Williams</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jack Brown</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

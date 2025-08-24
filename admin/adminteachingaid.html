@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Aid Management</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar {
+            background: #1565C0;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar ul li a:hover {
+            color: #FFD700;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            transition: all 0.3s ease-in-out;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        th {
+            background-color: #9C27B0;
+            color: white;
+        }
+        tr:hover {
+            transform: scale(1.05);
+            background-color: #E1BEE7;
+        }
+        .form-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F8BBD0;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+            background-color: #F48FB1;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            border-color: #9C27B0;
+        }
+        button {
+            background: #D32F2F;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+        .action-btn {
+            display: inline-block;
+            background: #FF5722;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .action-btn:hover {
+            background: #9C27B0;
+            transform: scale(1.05);
+        }
+
+        /* New Section Styles */
+        .section-title {
+            margin-top: 30px;
+            color: #9C27B0;
+            font-size: 1.5em;
+        }
+
+        .sold-section {
+            background-color: #FFF3E0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .delivery-status-section {
+            background-color: #C8E6C9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <span>Teaching Aid Management</span>
+        <ul>
+            <li><a href="adminhome.html">Home</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Manage Teaching Aids</h2>
+
+        <!-- Add Teaching Aid Form -->
+        <div class="form-section">
+            <h3>Add New Teaching Aid</h3>
+            <form action="#">
+                <input type="text" placeholder="Teaching Aid ID" required>
+                <textarea placeholder="Teaching Aid Details" required></textarea>
+                <input type="file" accept="image/*,video/*" required>
+                <input type="file" accept="video/*" required>
+                <input type="number" placeholder="Price" required>
+                <button type="submit">Add Teaching Aid</button>
+            </form>
+        </div>
+
+        <!-- Teaching Aid Table -->
+        <h3>Added Teaching Aids</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Teaching Aid ID</th>
+                    <th>Teaching Aid Details</th>
+                    <th>Teaching Aid Image</th>
+                    <th>Teaching Aid Video</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Interactive Learning Toy</td>
+                    <td><img src="toy.jpg" alt="Toy" width="50"></td>
+                    <td><video width="50" controls><source src="toy_video.mp4" type="video/mp4"></video></td>
+                    <td>$25.99</td>
+                    <td>
+                        <span class="action-btn" onclick="editTeachingAid(1)">Edit</span>
+                        <span class="action-btn" onclick="deleteTeachingAid(1)">Delete</span>
+                        <span class="action-btn" onclick="updateTeachingAid(1)">Update</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Autism Awareness Video</td>
+                    <td><img src="awareness.jpg" alt="Awareness Video" width="50"></td>
+                    <td><video width="50" controls><source src="awareness_video.mp4" type="video/mp4"></video></td>
+                    <td>$19.99</td>
+                    <td>
+                        <span class="action-btn" onclick="editTeachingAid(2)">Edit</span>
+                        <span class="action-btn" onclick="deleteTeachingAid(2)">Delete</span>
+                        <span class="action-btn" onclick="updateTeachingAid(2)">Update</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Sold Items Section -->
+        <div class="sold-section">
+            <h3>Sold Teaching Aids</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Teaching Aid ID</th>
+                        <th>Buyer Name</th>
+                        <th>Price</th>
+                        <th>Transaction Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>$25.99</td>
+                        <td>2025-03-29</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>$19.99</td>
+                        <td>2025-03-28</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Delivery Status Section -->
+        <div class="delivery-status-section">
+            <h3>Product Delivery Status</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Teaching Aid ID</th>
+                        <th>Buyer Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>Shipped</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function editTeachingAid(teachingAidId) {
+            alert('Edit Teaching Aid ID: ' + teachingAidId);
+            // Add logic for editing teaching aid
+        }
+        
+        function deleteTeachingAid(teachingAidId) {
+            alert('Delete Teaching Aid ID: ' + teachingAidId);
+            // Add logic for deleting teaching aid
+        }
+        
+        function updateTeachingAid(teachingAidId) {
+            alert('Update Teaching Aid ID: ' + teachingAidId);
+            // Add logic for updating teaching aid
+        }
+    </script>
+
+</body>
+</html>
